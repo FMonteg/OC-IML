@@ -10,6 +10,31 @@ import numpy as np
 
 app = Flask(__name__)
 
+def join(prefix_files, num_files, dest_file, read_size):
+    # Create a new destination file
+    output_file = open(dest_file, 'wb')
+    # Get a list of the file parts
+    parts = [prefix_files+'{}'.format(i+1) for i in range(num_files)]
+    # Go through each portion one by one
+    for file in parts:
+        # Assemble the full path to the file
+        path = file
+        # Open the part
+        input_file = open(path, 'rb')
+        while True:
+            # Read all bytes of the part
+            byte = input_file.read(read_size)
+            # Break out of loop if we are at end of file
+            if not byte:
+                break
+            # Write the bytes to the output file
+            output_file.write(byte)
+        # Close the input file
+        input_file.close()
+    # Close the output file
+    output_file.close()
+
+
 def formatage_texte(texte):
     texte = re.sub(r'\<a .*\</a\>', ' ', texte)
     texte = re.sub(r'\<pre.*\</pre\>', ' ', texte)
@@ -56,7 +81,8 @@ vector_file = 'vectorizer.pi'
 classif_file = 'classifier.pi'
 binary_file = 'binarizer.pi'
 
-    
+join(prefix_files='class_', num_files=7, dest_file=classif_file, read_size = 50000000)
+join(prefix_files='vect_', num_files=2, dest_file=vector_file, read_size = 50000000)
 
 
 
