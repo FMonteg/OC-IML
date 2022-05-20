@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <title>Tags advisor for the forum Stack Overflow</title>
+    <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+</head>
+
+<body>
+    <div class="prediction">
+        <h1>Tags Prediction</h1>
+        <form action="/api_post" method="POST">
+              <p>Write the question you want to post on Stack Overflow:</p>
+              <textarea id="texte" cols="50" name="texte" rows="10">I am trying to code in Python, but nothing appears on the screen. Should I turn on the computer first?
+              </textarea>
+              <p>Submit to get a suggestion of tags.</p>
+              <p><button type="submit" class="btn btn-primary btn-block btn-large" value="Submit">Submit</button></p>
+        </form>
+
+       <br>
+       <b>{{ prediction_text }}</b>
+    </div>
+</body>
+</html>
+
